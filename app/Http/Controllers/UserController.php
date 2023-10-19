@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\DataTables\UsersDataTable;
 
 
 class UserController extends Controller
@@ -20,10 +21,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(UsersDataTable $dataTable)
     {
-        $users = User::all();
-        return view("user.daftarPengguna", compact('users'));
+        return $dataTable->render('user.daftarPengguna');
     }
 
     /**
@@ -101,4 +101,5 @@ class UserController extends Controller
     {
         //
     }
+    // Adrian Maulana || 6706220037 || 46-04
 }

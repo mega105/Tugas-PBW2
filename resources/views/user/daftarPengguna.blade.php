@@ -1,103 +1,30 @@
+
+{{-- 6706220050-AHMAD FAZA AL FARISI-D3IF 46-04 --}}
+
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Pengguna') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Daftar Pengguna') }}
+            </h2>
+            <a href="{{ route('user.registrasi') }}">
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">REGISTRASI PENGGUNA</button>
+            </a>
+        </div>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                  <a href="{{ route("user.registrasi") }}">  <x-primary-button class="ml-4">
-                    {{ __('Register') }}
-                </x-primary-button></a>
-                    <div class=" mt-6  relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                  
-                                    <th scope="col" class="px-6 py-3">
-                                        No
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Full Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Email
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Username
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Address
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Phone Number
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Birthdate
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Agama
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Gender
-                                    </th>
-                                    <th colspan="2" scope="col" class="px-6 py-3 text-center">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $user)
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="w-4 p-4">
-                                            {{ $loop->iteration }}
-                                        </td>
-                                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $user->fullName }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $user->email }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $user->username }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $user->address }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $user->phoneNumber }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $user->birthdate }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ $user->agama }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                         @if (   $user->jenisKelamin == 0 )
-                                           <span>Pria</span>  
-                                         @else
-                                             <span>Wanita</span>
-                                         @endif
-                                        </td>
-                                        <td colspan="2" class="flex items-center justify-center gap-4 px-6 py-4">
-                                            <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
-                                           <form action="{{ route("user.infoPengguna", $user->id) }}">
-                                            <button type="submit" class="font-medium text-green-600 dark:text-green-500 hover:underline">View</button>
-                                           </form>
-                                            <button href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <div class="w-full">
+                        {{ $dataTable->table() }}
                     </div>
-                    
                 </div>
             </div>
         </div>
     </div>
+    @push('scripts')
+        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    @endpush
 </x-app-layout>
