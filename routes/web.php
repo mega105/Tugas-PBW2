@@ -1,5 +1,7 @@
 <?php
 
+// 6706220050 - AHMAD FAZA AL FARISI - D3IF 46-04
+
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -30,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.daftarPengguna');
-    Route::get('/userRegistrration', [UserController::class, 'create'])->name('user.registrasi');
+    Route::get('/userRegistration', [UserController::class, 'create'])->name('user.registrasi');
     Route::post('/userStore', [UserController::class, 'store'])->name('user.storePengguna');
     Route::get('/userView/{user}', [UserController::class, 'show'])->name('user.infoPengguna');
 

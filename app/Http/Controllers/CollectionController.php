@@ -1,12 +1,14 @@
 <?php
 
+// 6706220050 - AHMAD FAZA AL FARISI - D3IF 46-04
+
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Http\Requests\UpdateCollectionRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\DataTables\CollectionsDataTable;
 
 
 class CollectionController extends Controller
@@ -14,10 +16,9 @@ class CollectionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CollectionsDataTable $dataTable)
     {
-        $koleksi = Collection::all();
-        return view("koleksi.daftarKoleksi", compact('koleksi'));
+        return $dataTable->render('koleksi.daftarKoleksi');
     }
 
     /**
@@ -79,4 +80,5 @@ class CollectionController extends Controller
     {
         //
     }
+    // Adrian Maulana || 6706220037 || 46-04
 }
